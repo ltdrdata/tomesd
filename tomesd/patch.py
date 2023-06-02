@@ -55,7 +55,7 @@ def make_tome_block(block_class: Type[torch.nn.Module]) -> Type[torch.nn.Module]
         # Save for unpatching later
         _parent = block_class
 
-        def _forward(self, x: torch.Tensor, context: torch.Tensor = None) -> torch.Tensor:
+        def _forward(self, x: torch.Tensor, context: torch.Tensor = None, transformer_options=None) -> torch.Tensor:
             m_a, m_c, m_m, u_a, u_c, u_m = compute_merge(x, self._tome_info)
 
             # This is where the meat of the computation happens
